@@ -9,8 +9,8 @@ export default class Pricing {
       throw new TypeError('Currency must be instance of Currency');
     }
 
-    this.amount = amount;
-    this.currency = currency;
+    this._amount = amount;
+    this._currency = currency;
   }
 
   get amount() {
