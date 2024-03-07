@@ -7,8 +7,8 @@ export default class Currency {
       throw new TypeError('Name must be a string');
     }
 
-    this._code = code;
-    this._name = name;
+    this.code = code;
+    this.name = name;
   }
 
   get code() {
@@ -36,6 +36,6 @@ export default class Currency {
   }
 
   displayFullCurrency() {
-    return `${this.name}(${this.code})`;
+    return `${this.name} (${this.code})`;
   }
 }
