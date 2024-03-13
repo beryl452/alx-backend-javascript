@@ -15,7 +15,7 @@ export class Director implements DirectorInterface {
     return 'Working from home';
   }
 
-  getToWork(): string {
+  getCoffeeBreak(): string {
     return 'Getting a coffee break';
   }
 
