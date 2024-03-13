@@ -4,84 +4,100 @@ export interface Student {
   age: number;
   location: string;
 }
-const studentA: Student = {
-  firstName: "Harry",
-  lastName: "Yoon",
-  age: 22,
+const student1: Student = {
+  firstName: "Béryl",
+  lastName: "HOUESSOU",
+  age: 20,
   location: "Seoul, South Korea",
 };
-const studentB: Student = {
-  firstName: "Anjali",
-  lastName: "Prajapati",
+const student2: Student = {
+  firstName: "Béryl 001",
+  lastName: "HOUESOU",
   age: 22,
-  location: "Lodz, Poland",
+  location: "Ouidah, Bénin",
 };
 
-const studentsList: Array<Student> = [
-  studentA,
-  studentB,
+const studentsList: Student[] = [
+  student1,
+  student2,
 ];
 const styleSheet = `
-  html {
+  * {
+    box-sizing: border-box;
     margin: 0;
-    height: 100%;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
   }
   body {
     box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 80%;
-    margin: 10%;
+    height: 100vh;
+    width: 100vw;
   }
   table {
     border-collapse: collapse;
+    width: 35%;
+    height: 30%;
   }
   thead {
     font-weight: bold;
+    background: gainsboro;
   }
   td {
     padding: 10px;
     border: 1px solid gray;
     cursor: pointer;
   }
-  td:hover {
-    background: gainsboro;
-  }
-
   td:nth-child(1) {
     text-align: center;
   }
 `;
 
 /**
- * Displays information about students in a table.
- * @param students The list of students to display.
- * @author Bezaleel Olakunori <https://github.com/B3zaleel>
+ * Displays a table of students' information on the webpage.
+ * @param students - An array of Student objects containing the students' information.
  */
-export const displayStudents = (students: Array<Student>): void => {
+export const displayTable = (students: Student[]): void => {
   const table = document.createElement('table');
+
   const tableHead = document.createElement('thead');
-  const headRow = document.createElement('tr');
   const tableBody = document.createElement('tbody');
-  headRow.insertAdjacentHTML('beforeend', '<td>FirstName</td');
-  headRow.insertAdjacentHTML('beforeend', '<td>Location</td');
-  tableHead.insertAdjacentElement('beforeend', headRow);
+  const headRow = document.createElement('tr');
+  const headCell1 = document.createElement('td');
+  const headCell2 = document.createElement('td');
 
-  for (const student of students) {
-    const bodyRow = document.createElement('tr');
-    bodyRow.insertAdjacentHTML('beforeend', `<td>${student.firstName}</td>`);
-    bodyRow.insertAdjacentHTML('beforeend', `<td>${student.location}</td>`);
-    tableBody.insertAdjacentElement('beforeend', bodyRow);
-  }
+  headCell1.textContent = 'Firstname';
+  headCell2.textContent = 'Location';
 
-  table.insertAdjacentElement('beforeend', tableHead);
-  table.insertAdjacentElement('beforeend', tableBody);
-  document.body.insertAdjacentElement('beforeend', table);
-};
+  headRow.appendChild(headCell1);
+  headRow.appendChild(headCell2);
+  tableHead.appendChild(headRow);
+  table.appendChild(tableHead);
 
-displayStudents(studentsList);
-const styleSheetElement = document.createElement('style');
-styleSheetElement.innerHTML = styleSheet;
-document.head.insertAdjacentElement('beforeend', styleSheetElement);
+  students.forEach(student => {
+    let row = document.createElement('tr');
+    let cell1 = document.createElement('td');
+    let cell2 = document.createElement('td');
+
+    cell1.textContent = student.firstName;
+    cell2.textContent = student.location;
+
+    row.appendChild(cell1);
+    row.appendChild(cell2);
+
+    tableBody.appendChild(row);
+  });
+
+  table.appendChild(tableBody);
+  document.body.appendChild(table);
+}
+
+displayTable(studentsList);
+const style = document.createElement('style');
+style.textContent = styleSheet;
+document.head.appendChild(style);
 document.title = 'Task 0';
+
