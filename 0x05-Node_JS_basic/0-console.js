@@ -3,7 +3,7 @@
  * @param {String} msg The message to display.
  */
 const displayMessage = function (d) {
-  process.stdout.write(d + '\n');
+  console.log(d);
 };
 
 module.exports = displayMessage;
